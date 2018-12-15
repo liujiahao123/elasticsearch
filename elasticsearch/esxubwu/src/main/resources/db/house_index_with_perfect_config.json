@@ -1,0 +1,104 @@
+{
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 5,//每个分片 控制在10-20G
+    "index.store.type": "niofs",//采取nio的读写模式 优化性能
+    "index.query.default_field": "title",//默认读取title
+    "index.unassigned.node_left.delayed_timeout": "5m"//延迟恢复分片
+  },
+
+
+  "mappings": {
+    "house": {
+      "dynamic": "strict",//当数据结构比较稳定的时候比较有用
+      "_all": {//禁用所有的字段都被索引起来  节省空间 6.0版本本废弃
+        "enabled": false
+      },
+      "properties": {
+        "houseId": {
+          "type": "long"
+        },
+        "title": {
+          "type": "text",
+          "index": "analyzed",
+          "analyzer": "ik_smart",
+          "search_analyzer": "ik_smart"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "area": {
+          "type": "integer"
+        },
+        "createTime": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "lastUpdateTime": {
+          "type": "date",
+          "format": "strict_date_optional_time||epoch_millis"
+        },
+        "cityEnName": {
+          "type": "keyword"
+        },
+        "regionEnName": {
+          "type": "keyword"
+        },
+        "direction": {
+          "type": "integer"
+        },
+        "distanceToSubway": {
+          "type": "integer"
+        },
+        "subwayLineName": {
+          "type": "keyword"
+        },
+        "subwayStationName": {
+          "type": "keyword"
+        },
+        "tags": {
+          "type": "text"
+        },
+        "street": {
+          "type": "keyword"
+        },
+        "district": {
+          "type": "keyword"
+        },
+        "description": {
+          "type": "text",
+          "index": "analyzed",
+          "analyzer": "ik_smart",
+          "search_analyzer": "ik_smart"
+        },
+        "layoutDesc" : {
+          "type": "text",
+          "index": "analyzed",
+          "analyzer": "ik_smart",
+          "search_analyzer": "ik_smart"
+        },
+        "traffic": {
+          "type": "text",
+          "index": "analyzed",
+          "analyzer": "ik_smart",
+          "search_analyzer": "ik_smart"
+        },
+        "roundService": {
+          "type": "text",
+          "index": "analyzed",
+          "analyzer": "ik_smart",
+          "search_analyzer": "ik_smart"
+        },
+        "rentWay": {
+          "type": "integer"
+        },
+        "suggest": {
+          "type": "completion"
+        },
+        "location": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}

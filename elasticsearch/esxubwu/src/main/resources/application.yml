@@ -1,0 +1,79 @@
+spring:
+  mail:
+    host: 
+    username: 
+    password: 
+  kafka:
+    bootstrap-servers: 192.168.12.128:9092
+    consumer:
+      group-id: xunwu
+  session:
+    store-type: redis #会话存储到redis
+  http:
+    multipart:
+      enabled: true
+      location: F:/elasticsearch/esxubwu/tmp
+      file-size-threshold: 5MB
+      max-file-size: 20MB
+  devtools:
+    restart:
+      enabled: true
+      additional-exclude: src/main/java
+      exclude: templates/**,,static/**  #设置了thymeleaf不缓存使用设置修改页面不进行热加载
+  jpa:
+    show-sql: true
+    #hibernate:
+      #naming:
+       # physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        #implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  thymeleaf:
+      prefix: classpath:/templates/
+      check-template-location: true
+      cache: false
+      suffix: .html
+      encoding: UTF-8
+      content-type: text/html
+      mode: HTML5
+  redis:
+          host: 127.0.0.1
+          database: 0
+          port: 6379
+          password: 123456
+          pool:
+            max-active: 8
+            max-wait: -1
+            max-idle: 8
+            min-idle: 0
+          timeout: 5000
+# mysql
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/xunwu?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8080
+  error:
+   whitelabel:
+     enabled: false
+security:
+  basic:
+    enabled: false
+qiniu:
+   AccessKey: TikiUn7_oIwx0tzCO**************
+   SesretKey: ez6fJB1z4yv8CnKVg*************
+   Bucket:  hoyanspace
+   cdn:
+     prefix: 
+logging:
+  level:
+     com:
+      hoyan: debug
+
+# 阿里云短信配置 注意替换自己申请的配置
+aliyun:
+    sms:
+       accessKey: 
+       accessKeySecret: 
+       template:
+             code: 
